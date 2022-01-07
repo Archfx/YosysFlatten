@@ -1,0 +1,20 @@
+# read design 
+
+read_verilog table.v
+read_verilog round.v
+read_verilog aes_128.v
+
+# elaborate design hierarchy
+hierarchy -check -top aes_128
+
+
+
+# the high-level stuff
+proc; opt; fsm; opt; memory; opt
+
+flatten 
+
+select -module aes_128
+
+# write inline design
+write_verilog -selected inline.v
